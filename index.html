@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Yew • Routing • Custom Event</title>
+    <link data-trunk rel="rust" /> <!-- https://trunkrs.dev/assets/#rust -->
+
+    <script>
+      function change_route(path) {
+	const mydiv = document.getElementById("change-route") // rendered by Yew
+	if (mydiv) {
+	  mydiv.dispatchEvent(new CustomEvent('change-route', { detail: path }));
+	}
+      }
+    </script>
+  </head>
+  <body>
+
+    <!-- Radio buttons to trigger change_route() -->
+    <form>
+      <fieldset>
+	<legend>Choose a page:</legend>
+	<div>
+	  <input type="radio" name="page" value="Home"  id="Home"  onclick="change_route('/')"/><label for="Home">Home</label>
+	  <input type="radio" name="page" value="Page1" id="Page1" onclick="change_route('/page1')"/><label for="Page1">Page 1</label>
+	  <input type="radio" name="page" value="Page2" id="Page2" onclick="change_route('/page2')"/><label for="Page2">Page 2</label>
+	  <input type="radio" name="page" value="Other" id="Other" onclick="change_route('/other')"/><label for="Other">Other</label>
+	</div>
+      </fieldset>
+    </form>
+
+    <!-- Yew renders here -->
+    <div id="yew-main"/>
+  </body>
+</html>
